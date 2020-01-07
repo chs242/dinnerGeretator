@@ -53,6 +53,15 @@ footer{
     flex-direction: column;  
 }
 
+.green-border{
+    background-color: #f0e7db;
+    color: #cfb997;
+    width: 99%;
+    display: flex;
+    flex-direction: column; 
+    border: 2px solid green;
+}
+
 .output-container{
     padding: 5px 20px;
     width: 100%;
@@ -69,3 +78,23 @@ footer{
     width: 78%;
     float: right;
 }
+
+.add-button{
+    margin:2vh auto;
+    height: 85px;
+    width: 85px;
+    background-color: #cfb997;
+    color: #f0e7db;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.add-button:label{
+    add a selection
+}
+
+.add{
+    padding: 21px 0;
+}
+
+
