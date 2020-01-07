@@ -6,9 +6,12 @@ const side2Output = document.getElementById('side-2')
 const addButton = document.getElementById('add-button')
 
 dinnerButton.onclick = () => {
-    changeBorder()
-    setTimeout(() => {handleDinnerButton()}, 200);
-    setTimeout(() => {dinnerButton.setAttribute('class', 'dinner-button-pressed'), 1000})
+    setTimeout(() => {handleDinnerButton()}, 300);
+    dinnerButtonTimer(dinnerButton)
+}
+
+addButton.onclick = () => {
+    addButtonTimer(addButton)
 }
 
 function handleDinnerButton (){
@@ -17,7 +20,12 @@ function handleDinnerButton (){
     side2Output.innerHTML = 'here is your second side'
 }
 
-function changeBorder (){
-    output.setAttribute('class', 'green-border')
-    setTimeout(()=>{output.setAttribute('class', 'output')}, 250) 
+function dinnerButtonTimer (btn) {
+    setTimeout(() => {btn.setAttribute('class', 'dinner-button-pressed')}, 200)
+    setTimeout(() => {btn.setAttribute('class', 'dinner-button')}, 450)
+}
+
+function addButtonTimer (btn) {
+    setTimeout(() => {btn.setAttribute('class', 'add-button-pressed')}, 200)
+    setTimeout(() => {btn.setAttribute('class', 'add-button')}, 450)
 }
