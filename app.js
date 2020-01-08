@@ -7,6 +7,7 @@ const addButton = document.getElementById('add-button')
 const addContainer = document.getElementById('add-container-visibility-toggle-wrapper')
 const cancelButton = document.getElementById('cancel-button')
 const finalAddButton = document.getElementById('final-add-button')
+const finalAddContainer = document.getElementById('final-add-message-container')
 
 dinnerButton.onclick = () => {
     backShadowTimer(dinnerButton, 'dinner-button-pressed', 'dinner-button')
@@ -27,6 +28,10 @@ cancelButton.onclick = () => {
 
 finalAddButton.onclick = () => {
     backShadowTimer(finalAddButton, 'add-container-button-pressed', 'add-container-button')
+    setTimeout(() => {removeVisibility(addContainer)}, 200);
+    setTimeout(() => {addVisibility(finalAddContainer)}, 300);
+    setTimeout(() => {addVisibility(addButton)}, 3000);
+    setTimeout(() => {removeVisibility(finalAddContainer)}, 3000);
 }
 
 function handleDinnerButton (){

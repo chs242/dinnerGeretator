@@ -166,9 +166,25 @@ input{
     cursor: pointer;
 }
 
+.final-add-message-container{
+    display: none; 
+    margin: 0 auto;
+    height: 140px;
+    border: 2px solid #cfb997;
+    border-radius: 10px;
+    background-color: #f0e7db;
+    width: 40%;
+    
+}
+
+.final-add-message{
+    color:  #cfb997;
+    padding: 35px 4vw;
+}
+
 
 @media screen and (max-width: 600px) {
-    .output, .green-border, input {
+    .output, .green-border, input, .final-add-message-container {
      width: 80%;
     }
   }
