@@ -4,14 +4,29 @@ const mainOutput = document.getElementById('main')
 const side1Output = document.getElementById('side-1')
 const side2Output = document.getElementById('side-2')
 const addButton = document.getElementById('add-button')
+const addContainer = document.getElementById('add-container-visibility-toggle-wrapper')
+const cancelButton = document.getElementById('cancel-button')
+const finalAddButton = document.getElementById('final-add-button')
 
 dinnerButton.onclick = () => {
+    backShadowTimer(dinnerButton, 'dinner-button-pressed', 'dinner-button')
     setTimeout(() => {handleDinnerButton()}, 300);
-    dinnerButtonTimer(dinnerButton)
 }
 
 addButton.onclick = () => {
-    addButtonTimer(addButton)
+    backShadowTimer(addButton, 'add-button-pressed', 'add-button')
+    setTimeout(() => {addVisibility(addContainer)}, 300);
+    setTimeout(() => {removeVisibility(addButton)}, 200);
+}
+
+cancelButton.onclick = () => {
+    backShadowTimer(cancelButton, 'add-container-button-pressed', 'add-container-button')
+    setTimeout(() => {addVisibility(addButton)}, 300);
+    setTimeout(() => {removeVisibility(addContainer)}, 200);
+}
+
+finalAddButton.onclick = () => {
+    backShadowTimer(finalAddButton, 'add-container-button-pressed', 'add-container-button')
 }
 
 function handleDinnerButton (){
@@ -20,12 +35,19 @@ function handleDinnerButton (){
     side2Output.innerHTML = 'here is your second side'
 }
 
-function dinnerButtonTimer (btn) {
-    setTimeout(() => {btn.setAttribute('class', 'dinner-button-pressed')}, 200)
-    setTimeout(() => {btn.setAttribute('class', 'dinner-button')}, 450)
+function backShadowTimer (btn, classNamePressed, className) {
+    setTimeout(() => {btn.setAttribute('class', classNamePressed)}, 50)
+    setTimeout(() => {btn.setAttribute('class', className)}, 350)
 }
 
-function addButtonTimer (btn) {
-    setTimeout(() => {btn.setAttribute('class', 'add-button-pressed')}, 200)
-    setTimeout(() => {btn.setAttribute('class', 'add-button')}, 450)
+function addVisibility (x) {
+    if ((x.style.display != "block")) {
+        x.style.display = "block";
+      } 
+    
+}
+function removeVisibility (x) {
+    if ((x.style.display != "none")){
+        x.style.display = "none";
+    }
 }

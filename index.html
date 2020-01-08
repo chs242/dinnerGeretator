@@ -18,15 +18,17 @@
        
         <div id="add-button" class="add-button"><h1 class="add">Add</h1></div>
 
-        <div class="add-container">
-            <label for="main">Add a Main</label>
-            <input name="main" type="text" placeholder="add main...">
-            <label for="side-1">Add the first Side</label>
-            <input name="side-1" type="text" placeholder="add first side...">
-            <label for="side-2">Add the second Side</label>
-            <input name="side-2"type="text" placeholder="add second side...">
+        <div id="add-container-visibility-toggle-wrapper">
+            <div id="add-container" class="add-container">
+                <input name="main" type="text" placeholder="add main...">
+                <input name="side-1" type="text" placeholder="add first side...">
+                <input name="side-2"type="text" placeholder="add second side...">
+                <div>
+                    <button id="cancel-button" class="add-container-button">cancel</button>
+                    <button id="final-add-button" class="add-container-button">Add</button>
+                </div>
+            </div>
         </div>
-        
     </div>
     <footer>copywrite 2019 Edward Stern</footer>
     <script src="app.js"></script>
