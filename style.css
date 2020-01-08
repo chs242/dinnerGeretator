@@ -24,6 +24,15 @@ html, body{
     padding: 20px;
 }
 
+.dropup-menu{
+    float: left; 
+    width: 10%;
+    left: 10px;
+    bottom: 10px;
+    cursor: pointer;
+    font-size: xx-large;
+}
+
 footer{
     background: #cfb997;
     color: #f0e7db;
