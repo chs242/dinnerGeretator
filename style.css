@@ -25,10 +25,10 @@ html, body{
 }
 
 .dropup-menu{
-    float: left; 
+    border: 2px solid green;
+    position: absolute;
+    margin: 0 1vw;
     width: 10%;
-    left: 10px;
-    bottom: 10px;
     cursor: pointer;
     font-size: xx-large;
 }
