@@ -1,3 +1,5 @@
+var firebase = require("firebase");
+
 const dinnerButton = document.getElementById('dinner-button')
 const output = document.getElementById('output')
 const mainOutput = document.getElementById('main')
