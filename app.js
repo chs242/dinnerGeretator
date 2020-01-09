@@ -1,3 +1,15 @@
+//register the service worker
+//navigator is a keyword which will check to see if the browser supports the service worker
+//the method register is used to register the service worker. async task, meaning
+//it will take some time to complete and returns a promise. if the promise is resolved it fires the callback function in the 
+//then method otherwise it fires the callback function inside the catch method. known as promise syntax
+//the reg and err are just the register and error objects that are returned. not really necessary
+if("serviceWorker" in navigator){
+    navigator.serviceWorker.register('/sw.js')
+        .then((reg) => console.log('service worker registered', reg))
+        .catch((err) => console.log('service worker not registered', err))
+}
+
 const dinnerButton = document.getElementById('dinner-button')
 const output = document.getElementById('output')
 const mainOutput = document.getElementById('main')

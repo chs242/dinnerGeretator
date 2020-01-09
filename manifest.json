@@ -21,6 +21,11 @@
             "src": "/icons/dinner-256x256.png",
             "type": "image/png",
             "sizes": "256x256"
+        },
+        {
+            "src": "/icons/dinner-512x512.png",
+            "type": "image/png",
+            "sizes": "512x512"
         }
     ]
 
