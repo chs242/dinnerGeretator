@@ -40,5 +40,11 @@ self.addEventListener('activate', evt => {
 //another prerequisite for a pwa is that it must have fetch event
 //to intercept fetch requests to the server
 self.addEventListener('fetch', evt => {
-    console.log('fetch event', evt)
+    //console.log('fetch event', evt)
+    evt.respondWith(
+        //async. takes time returns a promise, resolved or other
+        caches.match(evt.request).then(cacheResponse => {
+            return cacheResponse || fetch(evt.request)
+        })
+    )
 })
