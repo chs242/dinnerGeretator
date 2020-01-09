@@ -1,0 +1,27 @@
+{
+    "name": "Dinner Generator",
+    "short_name": "DinnerGenerator",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#cfb997",
+    "theme_color": "#f0e7db",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/icons/dinner-64x64.png",
+            "type": "image/png",
+            "sizes": "64x64"
+        },
+        {
+            "src": "/icons/dinner-128x128.png",
+            "type": "image/png",
+            "sizes": "128x128"
+        },
+        {
+            "src": "/icons/dinner-256x256.png",
+            "type": "image/png",
+            "sizes": "256x256"
+        }
+    ]
+
+}
