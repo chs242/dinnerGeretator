@@ -1,12 +1,29 @@
 //https://developers.google.com/web/fundamentals/app-install-banners/
-
+const cacheName ='site-static'
+const assets = [
+    '/',//not sure what this is. net ninja episode 15
+    '/index.html',//storing the requset url of the index
+    '/app.js',
+    '/style.css',
+    'https://fonts.googleapis.com/css?family=Quicksand:700&display=swap'
+]
 //install service worker
 //self refers to sw itself
 //sw installs itself only if there is a change in the files. On reload
 //if nothing in the files have cvhanged this won't be logged.
 //(understand the lifecycle of the service worker)
 self.addEventListener('install', evt => {
-    console.log('sw been installed')
+    //console.log('sw been installed')
+    //caches is the cache API and is async. takes time and returns a promi8se
+    //async. might take a while
+    evt.waitUntil(
+        caches.open(cacheName).then(cache => {
+            console.log('cached shell assets')
+            cache.addAll(assets)
+        })
+    )
+    
+
 })
 
 //activate sw. listening for sw activation
