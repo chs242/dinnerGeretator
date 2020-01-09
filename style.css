@@ -196,4 +196,7 @@ input{
     .output, .green-border, input, .final-add-message-container {
      width: 80%;
     }
+    .add-container-button, .add-container-button-pressed{
+        font-size: 1vh;
+    }
   }
