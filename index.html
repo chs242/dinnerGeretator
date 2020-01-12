@@ -39,11 +39,77 @@
             <h3 class="final-add-message">You Have Successfully Added Your Selection</h3>
         </div>
     </div>
+    <button id='test'>test</button>
     <footer>
         <div class="dropup-menu-wrapper"><div id="dropup-menu" class="dropup-menu">...</div></div>
         <h4>copywrite 2019 Edward Stern</h4>
     </footer>
 
     <script src="app.js"></script>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-firestore.js"></script>
+
+    <script>
+    // Your web app's Firebase configuration
+
+    var firebaseConfig = {
+        apiKey: "AIzaSyDri08BIfNtKQLipY4T7bP4F3Dm6r4vKLo",
+        authDomain: "dinner-generator-49191.firebaseapp.com",
+        databaseURL: "https://dinner-generator-49191.firebaseio.com",
+        projectId: "dinner-generator-49191",
+        storageBucket: "dinner-generator-49191.appspot.com",
+        messagingSenderId: "91970655312",
+        appId: "1:91970655312:web:cf77255e90d6da3219ed55"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    var db = firebase.firestore();
+
+
+    var mealsCollection = []
+    function getData() {
+      db.collection("meals").onSnapshot(querySnapshot => {
+        mealsCollection = [];
+        querySnapshot.forEach(doc => {
+          // console.log("doc: ", doc.data());
+          mealsCollection.push(doc.data());
+        });
+        console.log("Meals: ", mealsCollection);
+      });
+    }
+
+    const mealSample = {
+        catagory: 'main',
+        meal: 'chicken'
+    }
+
+    function handleWrite(meal) {
+      db.collection("meals").doc()
+        .set({
+          catagory: meal.catagory || "",
+          meal: meal.meal || "",
+        })
+        .then(function() {
+          console.log("Document successfully written!");
+        })
+        .catch(function(error) {
+          console.error("Error writing document: ", error);
+        });
+    }
+
+    getData()
+
+    function sampleFunction(){
+        handleWrite(mealSample)
+    }
+
+    document.getElementById('test').addEventListener('click', sampleFunction)
+    </script>
 </body>
 </html>
