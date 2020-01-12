@@ -1,24 +1,20 @@
+//import { promises } from "dns"
+
 //https://developers.google.com/web/fundamentals/app-install-banners/
-const cacheName ='site-static'
+const cacheName ='site-static-v1'//
 const assets = [
-    '/',//not sure what this is. net ninja episode 15
-    '/index.html',//storing the requset url of the index
+    '/',
+    '/index.html',
     '/app.js',
     '/style.css',
     'https://fonts.googleapis.com/css?family=Quicksand:700&display=swap'
 ]
-//install service worker
-//self refers to sw itself
-//sw installs itself only if there is a change in the files. On reload
-//if nothing in the files have cvhanged this won't be logged.
-//(understand the lifecycle of the service worker)
+
 self.addEventListener('install', evt => {
-    //console.log('sw been installed')
-    //caches is the cache API and is async. takes time and returns a promi8se
-    //async. might take a while
+    
     evt.waitUntil(
         caches.open(cacheName).then(cache => {
-            console.log('cached shell assets')
+            console.log('reinstalled cache')
             cache.addAll(assets)
         })
     )
@@ -26,23 +22,25 @@ self.addEventListener('install', evt => {
 
 })
 
-//activate sw. listening for sw activation
-// even if something in the files have been changed this won't be
-//logged. it is in waiting mode. check devtools;application;service workers
-//and it will say waiting to activate becuase it could cause
-//breaking changes in the app and affect UX. only activates when user
-//has closed all instances of app in browser or on phone
+
 self.addEventListener('activate', evt => {
-    console.log('sw has been activated');
+    
+    //cache versioning
+    evt.waitUntil(
+        caches.keys().then(keys => {
+            return Promise.all(keys
+                .filter(key => key !== cacheName)
+                .map(key => caches.delete(key))
+            )
+        })
+    )
+    
 });
 
 
-//another prerequisite for a pwa is that it must have fetch event
-//to intercept fetch requests to the server
+
 self.addEventListener('fetch', evt => {
-    //console.log('fetch event', evt)
     evt.respondWith(
-        //async. takes time returns a promise, resolved or other
         caches.match(evt.request).then(cacheResponse => {
             return cacheResponse || fetch(evt.request)
         })
