@@ -21,7 +21,7 @@
 //     })
 // }
 
-// db.collection('v2').limit(1).get().then(result => {
+// db.collection('v2').get().then(result => {
 //     let myDoc = result.docs[0]
 //     console.log(myDoc.data())
 // })
@@ -48,16 +48,18 @@
 // }
 
 const renderMain = (main) => {
-    let myArray = []
-    db.collection('users').get().then(getData => {
-        getData.forEach(document => {
-            myArray.push(document.data().mains[0].foodName)
-        })
-        let randomItem1 = myArray[Math.floor(Math.random() * myArray.length)];
-        //console.log(myArray)
-        console.log(myArray)
+    let foodNameArray = []
+    db.collection('users').get().then(result => {
+        const userDoc = result.doc[0];
+        console.log(userDoc.data())
+        // userDoc.data().mains.forEach(item => {
+            
+        //     //foodNameArray.push(item.foodName);
+        // });
+    });
+        //console.log(foodNameArray);
         
-    })
+    
 }
 
 
