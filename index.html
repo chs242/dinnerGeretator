@@ -45,16 +45,12 @@
         <h4>copywrite 2019 Edward Stern</h4>
     </footer>
 
-    <script src="app.js"></script>
-        <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
-
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-        
-        https://firebase.google.com/docs/web/setup#available-libraries -->
-        <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-firestore.js"></script>
 
     <script>
+        
     // Your web app's Firebase configuration
 
     var firebaseConfig = {
@@ -68,48 +64,9 @@
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
-
-    var db = firebase.firestore();
-
-
-    var mealsCollection = []
-    function getData() {
-      db.collection("meals").onSnapshot(querySnapshot => {
-        mealsCollection = [];
-        querySnapshot.forEach(doc => {
-          // console.log("doc: ", doc.data());
-          mealsCollection.push(doc.data());
-        });
-        console.log("Meals: ", mealsCollection);
-      });
-    }
-
-    const mealSample = {
-        catagory: 'main',
-        meal: 'chicken'
-    }
-
-    function handleWrite(meal) {
-      db.collection("meals").doc()
-        .set({
-          catagory: meal.catagory || "",
-          meal: meal.meal || "",
-        })
-        .then(function() {
-          console.log("Document successfully written!");
-        })
-        .catch(function(error) {
-          console.error("Error writing document: ", error);
-        });
-    }
-
-    getData()
-
-    function sampleFunction(){
-        handleWrite(mealSample)
-    }
-
-    document.getElementById('test').addEventListener('click', sampleFunction)
+    const db = firebase.firestore();
     </script>
+    <script src="app.js"></script>
+    <script src="db.js"></script>
 </body>
 </html>

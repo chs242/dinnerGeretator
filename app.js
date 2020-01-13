@@ -46,10 +46,11 @@ finalAddButton.onclick = () => {
     setTimeout(() => {removeVisibility(finalAddContainer)}, 3000);
 }
 
-function handleDinnerButton (){
-    mainOutput.innerHTML = 'here is your main'
-    side1Output.innerHTML = 'here is your first side'
-    side2Output.innerHTML = 'here is your second side'
+function handleDinnerButton () {
+    // renderItem('main courses', mainOutput)
+    // renderSide('sides', side1Output, side2Output)
+    renderMain()
+    
 }
 
 function backShadowTimer (btn, classNamePressed, className) {
