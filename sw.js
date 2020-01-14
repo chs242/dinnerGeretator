@@ -1,7 +1,5 @@
-//import { promises } from "dns"
-
 //https://developers.google.com/web/fundamentals/app-install-banners/
-const cacheName ='site-static-v1'//
+const cacheName ='site-static-v2'
 const assets = [
     '/',
     '/index.html',
@@ -9,6 +7,8 @@ const assets = [
     '/style.css',
     'https://fonts.googleapis.com/css?family=Quicksand:700&display=swap'
 ]
+
+//lifecycle of PWA includes 3 stages. 'install', 'activate', 'fetch'
 
 self.addEventListener('install', evt => {
     
@@ -40,9 +40,12 @@ self.addEventListener('activate', evt => {
 
 
 self.addEventListener('fetch', evt => {
-    // evt.respondWith(
-    //     caches.match(evt.request).then(cacheResponse => {
-    //         return cacheResponse || fetch(evt.request)
-    //     })
-    // )
+    //we don't want to cache any data response from the firestore
+        if(evt.request.url.indexOf('firestore.googleapis.com') === -1){
+        evt.respondWith(
+            caches.match(evt.request).then(cacheResponse => {
+                return cacheResponse || fetch(evt.request)
+            })
+        )
+    }
 })

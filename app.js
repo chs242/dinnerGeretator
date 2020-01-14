@@ -1,9 +1,6 @@
 //register the service worker
 //navigator is a keyword which will check to see if the browser supports the service worker
-//the method register is used to register the service worker. async task, meaning
-//it will take some time to complete and returns a promise. if the promise is resolved it fires the callback function in the 
-//then method otherwise it fires the callback function inside the catch method. known as promise syntax
-//the reg and err are just the register and error objects that are returned. not really necessary
+//the method register is used to register the service worker and is async.
 if("serviceWorker" in navigator){
     navigator.serviceWorker.register('/sw.js')
         .then((reg) => console.log('service worker registered', reg))
@@ -22,40 +19,35 @@ const finalAddButton = document.getElementById('final-add-button')
 const finalAddContainer = document.getElementById('final-add-message-container')
 
 dinnerButton.onclick = () => {
-    backShadowTimer(dinnerButton, 'dinner-button-pressed', 'dinner-button')
-    setTimeout(() => {handleDinnerButton()}, 300);
+    shadowWhenPressed(dinnerButton, 'dinner-button-pressed', 'dinner-button')
+    //renderMeal is a database function. found in db.js
+    renderMeal(mainOutput, side1Output, side2Output)
 }
 
 addButton.onclick = () => {
-    backShadowTimer(addButton, 'add-button-pressed', 'add-button')
+    shadowWhenPressed(addButton, 'add-button-pressed', 'add-button')
     setTimeout(() => {addVisibility(addContainer)}, 300);
     setTimeout(() => {removeVisibility(addButton)}, 200);
 }
 
 cancelButton.onclick = () => {
-    backShadowTimer(cancelButton, 'add-container-button-pressed', 'add-container-button')
+    shadowWhenPressed(cancelButton, 'add-container-button-pressed', 'add-container-button')
     setTimeout(() => {addVisibility(addButton)}, 300);
     setTimeout(() => {removeVisibility(addContainer)}, 200);
 }
 
 finalAddButton.onclick = () => {
-    backShadowTimer(finalAddButton, 'add-container-button-pressed', 'add-container-button')
+    shadowWhenPressed(finalAddButton, 'add-container-button-pressed', 'add-container-button')
+    //renderToDb()
     setTimeout(() => {removeVisibility(addContainer)}, 200);
     setTimeout(() => {addVisibility(finalAddContainer)}, 300);
     setTimeout(() => {addVisibility(addButton)}, 3000);
     setTimeout(() => {removeVisibility(finalAddContainer)}, 3000);
 }
 
-function handleDinnerButton () {
-    // renderItem('main courses', mainOutput)
-    // renderSide('sides', side1Output, side2Output)
-    renderMain()
-    
-}
-
-function backShadowTimer (btn, classNamePressed, className) {
-    setTimeout(() => {btn.setAttribute('class', classNamePressed)}, 50)
-    setTimeout(() => {btn.setAttribute('class', className)}, 350)
+function shadowWhenPressed (btn, classNamePressed, className) {
+    setTimeout(() => {btn.setAttribute('class', classNamePressed)}, 1)
+    setTimeout(() => {btn.setAttribute('class', className)}, 250)
 }
 
 function addVisibility (x) {

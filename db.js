@@ -1,115 +1,49 @@
-//real time listener
-// db.collection('main courses').onSnapshot(snapshot => {
-//     snapshot.docChanges().forEach(change => {
-//         if(change.type === "added"){
-//             console.log("new add", change.doc.data())
-//         }
-//         if(change.type === "removed"){
-//             console.log("removed", change.doc.data())
-//         }
-//     })
-// })
+//to enable offline data by utilising indexedDB, a local inbuilt database available in modern browsers
+db.enablePersistence()
+  .catch(err => {
+      if(err.code == 'failed-precondition'){
+          //probably multiple tabs open
+          console.log('persisitence failed');
+      } else if(err.code == 'unimplemented'){
+          //lacking browser support
+          console.log('persisitence is not available')
+      }
+  })
 
-// const renderItem = (collectionName, htmlElement) => {
-//     const myArray = []
-//     db.collection(collectionName).get().then(getData => {
-//         getData.forEach(document => {
-//             myArray.push(document.data().title)
-//             let randomItem = myArray[Math.floor(Math.random() * myArray.length)];
-//             return htmlElement.innerHTML = randomItem
-//         });
-//     })
-// }
-
-// db.collection('v2').get().then(result => {
-//     let myDoc = result.docs[0]
-//     console.log(myDoc.data())
-// })
-
-// const renderSide = (collectionName, side1, side2) => {
-//     let myArray = []
-//     db.collection(collectionName).get().then(getData => {
-//         getData.forEach(document => {
-//             myArray.push(document.data())
-            
-//         });
-//         let randomItem1 = myArray[Math.floor(Math.random() * myArray.length)];
-//         side1.innerHTML = randomItem1.title
-//         myArray = myArray.filter(item => item.foodType !== randomItem1.foodType)
-//         console.log(myArray)
-//         let randomItem2 = myArray[Math.floor(Math.random() * myArray.length)];
-//         side2.innerHTML = randomItem2.title
-//     })
-// }
-
-// const renderMeal = () => {
-//     renderMain()
-//     renderSides()
-// }
-
-const renderMain = (main) => {
-    let foodNameArray = []
+//function that returns 1 main and 2 different sides from the database
+const renderMeal = (htmlMains, htmlSides1, htmlSides2) => {
     db.collection('users').get().then(result => {
-        const userDoc = result.doc[0];
-        console.log(userDoc.data())
-        // userDoc.data().mains.forEach(item => {
+        result.forEach(item => {
+            const mainDishes = item.data().mains
+            const sideDishes = item.data().sides
             
-        //     //foodNameArray.push(item.foodName);
-        // });
-    });
-        //console.log(foodNameArray);
+            const mainDishChoice = randomDishChoice(mainDishes);
+            const sidesArray = twoRandomDishChoices(sideDishes)
+            
+            htmlMains.innerHTML = mainDishChoice.foodName
+            htmlSides1.innerHTML = sidesArray[0].foodName
+            htmlSides2.innerHTML = sidesArray[1].foodName
+            
+        });
+    });     
+
+    function randomDishChoice (myArray) {
+        let randomItem = myArray[Math.floor(Math.random() * myArray.length)];
+        return randomItem    
+    }
+
+    function twoRandomDishChoices (myArray) {
+        let randomItem = randomDishChoice(myArray)
+
+        //both sides won't be similar. filtering items of the same foodtype
+        myArray = myArray.filter(item => item.foodType !== randomItem.foodType)
+
+        let randomItem2 = randomDishChoice(myArray)
+        return [randomItem, randomItem2]
         
-    
+    }
 }
 
+// function renderToDb{
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // var mealsCollection = []
-    // function renderMain() {
-    //   db.collection("meals").onSnapshot(snapshot => {
-    //     mealsCollection = [];
-    //     snapshot.forEach(doc => {
-    //       mealsCollection.push(doc.data());
-    //     });
-    //     console.log("Meals: ", mealsCollection);
-    //   });
-    // }
-
-    // const mealSample = {
-    //     catagory: 'main',
-    //     meal: 'chicken'
-    // }
-
-    // function handleWrite(meal) {
-    //   db.collection("meals").doc()
-    //     .set({
-    //       catagory: meal.catagory || "",
-    //       meal: meal.meal || "",
-    //     })
-    //     .then(function() {
-    //       console.log("Document successfully written!");
-    //     })
-    //     .catch(function(error) {
-    //       console.error("Error writing document: ", error);
-    //     });
-    // }
-
-    // getData()
-
-    // function sampleFunction(){
-    //     handleWrite(mealSample)
-    // }
-
-    // document.getElementById('test').addEventListener('click', sampleFunction)
+// }
