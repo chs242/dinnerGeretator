@@ -73,3 +73,18 @@ function renderToDb () {
     side1Input.value = ''
     side2Input.value = ''
 }
+
+const renderMenu = () => {
+    const myArray = []
+    db.collection('users').get().then(result => {
+        result.forEach(item => {
+            const mainDishes = item.data().mains;
+            for(i of mainDishes){
+                myArray.push(i.foodName);
+            }   
+            
+        });
+    });
+    console.log(myArray)
+    
+}

@@ -14,6 +14,7 @@ const viewMenuBtn = document.getElementById('view-menu')
 const settingsBtn = document.getElementById('settings')
 const logoutBtn = document.getElementById('log-out')
 const modal = document.getElementById('modal')
+const modalContent = document.getElementById('modal-content')
 const modalCloseBtn = document.getElementById('modal-close-btn')
 
 //DOM = outputs
@@ -53,6 +54,8 @@ modalCloseBtn.onclick = () => closeModal()
 viewMenuBtn.onclick = () => {
     closeNavBar()
     modal.style.display = 'block';
+    const menu = renderMenu()
+    modalContent.innerHTML = menu
 }
 
 window.onclick = function(evt) {
