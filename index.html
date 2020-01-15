@@ -13,8 +13,18 @@
     <meta name="theme-color" content="#F0E7DB">
     <title>Dinner Generator</title>
 </head>
-<body>
+<body id="body">
     <div class="content">
+
+        <!-- side Navigation menu -->
+        <div id="side-nav" class="side-nav">
+            <a href="javascript:void(0)" id="close-btn" class="close-btn nav-option">&times;</a>
+            <a href="#" class="nav-option" id="view-menu">View Menu</a>
+            <a href="#" class="nav-option" id="settings">Settings</a>
+            <a href="#" class="nav-option" id="log-out">Log Out</a>
+        </div>
+
+        <!-- generate dinner button and results -->
         <div class="dinner-button" id="dinner-button">Generate Dinner Selection</div>
         <div class="output" id="output">
             <div class=output-container><span class="output-label">Main:</span> <span class="output-output" id="main"></span></div>
@@ -22,13 +32,14 @@
             <div class=output-container><span class="output-label">Side Dish #2: </span> <span class="output-output" id="side-2"></span></div>
         </div>
        
+        <!-- Add button and add container -->
         <div id="add-button" class="add-button"><h1 class="add">Add</h1></div>
 
         <div id="add-container-visibility-toggle-wrapper">
             <div id="add-container" class="add-container">
-                <input name="main" type="text" placeholder="add main...">
-                <input name="side-1" type="text" placeholder="add first side...">
-                <input name="side-2"type="text" placeholder="add second side...">
+                <input name="main" type="text" id="main-input" placeholder="add main...">
+                <input name="side-1" type="text" id="side-1-input" placeholder="add side dish...">
+                <input name="side-2"type="text" id="side-2-input" placeholder="add another side dish...">
                 <div>
                     <button id="cancel-button" class="add-container-button">cancel</button>
                     <button id="final-add-button" class="add-container-button">Add</button>
@@ -36,12 +47,26 @@
             </div>
         </div>
         <div id="final-add-message-container" class="final-add-message-container">
-            <h3 class="final-add-message">You Have Successfully Added Your Selection</h3>
+            <h3 id="final-add-message" class="final-add-message"></h3>
         </div>
     </div>
-    <button id='test'>test</button>
+
+    <!-- nav option pop-up modal -->
+    <div id="modal" class="modal">
+        <div id="modal-box" class="modal-box">
+            <div id="modal-header" class="modal-header">
+                <a href="javascript:void(0)" id="modal-close-btn" class="modal-close-btn">&times;</a>
+            </div>
+            <div id="modal-content" class="modal-content">
+                some text here <br> some more text here
+            </div>
+            <div id="modal-footer" class="modal-footer"></div>
+        </div>
+    </div>
+
+    <!-- footer  -->
     <footer>
-        <div class="dropup-menu-wrapper"><div id="dropup-menu" class="dropup-menu">...</div></div>
+        <div class="dropup-menu-wrapper"><div id="side-nav-btn" class="side-nav-btn">...</div></div>
         <h4>copywrite 2019 Edward Stern</h4>
     </footer>
 

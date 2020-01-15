@@ -6,18 +6,67 @@ if("serviceWorker" in navigator){
         .then((reg) => console.log('service worker registered', reg))
         .catch((err) => console.log('service worker not registered', err))
 }
+//Dom = navbar
+const sideNav = document.getElementById('side-nav')
+const closeBtn = document.getElementById('close-btn')
+const openBtn = document.getElementById('side-nav-btn')
+const viewMenuBtn = document.getElementById('view-menu')
+const settingsBtn = document.getElementById('settings')
+const logoutBtn = document.getElementById('log-out')
+const modal = document.getElementById('modal')
+const modalCloseBtn = document.getElementById('modal-close-btn')
 
+//DOM = outputs
 const dinnerButton = document.getElementById('dinner-button')
 const output = document.getElementById('output')
 const mainOutput = document.getElementById('main')
 const side1Output = document.getElementById('side-1')
 const side2Output = document.getElementById('side-2')
+
+//DOM = add container
 const addButton = document.getElementById('add-button')
 const addContainer = document.getElementById('add-container-visibility-toggle-wrapper')
 const cancelButton = document.getElementById('cancel-button')
 const finalAddButton = document.getElementById('final-add-button')
+const finalAddMessage = document.getElementById('final-add-message')
 const finalAddContainer = document.getElementById('final-add-message-container')
 
+//Dom = Inputs
+const mainInput = document.getElementById('main-input')
+const side1Input = document.getElementById('side-1-input')
+const side2Input = document.getElementById('side-2-input')
+
+
+// navBar open, close and modal functionality
+openBtn.onclick = () => {
+    const x = window.matchMedia('(max-width: 600px)')
+    if(x.matches){
+        openNavBar('70%')
+    }else {
+        openNavBar('20%')
+    }
+}
+
+closeBtn.onclick = () => closeNavBar()
+modalCloseBtn.onclick = () => closeModal()
+
+viewMenuBtn.onclick = () => {
+    closeNavBar()
+    modal.style.display = 'block';
+}
+
+window.onclick = function(evt) {
+    if (evt.target == modal) {
+      closeModal()
+    }
+  }
+
+const closeNavBar = () => sideNav.style.width = 0;
+const closeModal = () => modal.style.display = "none";
+const openNavBar = (width) => sideNav.style.width = width
+
+
+//genearate button and add container
 dinnerButton.onclick = () => {
     shadowWhenPressed(dinnerButton, 'dinner-button-pressed', 'dinner-button')
     //renderMeal is a database function. found in db.js
@@ -38,11 +87,20 @@ cancelButton.onclick = () => {
 
 finalAddButton.onclick = () => {
     shadowWhenPressed(finalAddButton, 'add-container-button-pressed', 'add-container-button')
-    //renderToDb()
-    setTimeout(() => {removeVisibility(addContainer)}, 200);
-    setTimeout(() => {addVisibility(finalAddContainer)}, 300);
-    setTimeout(() => {addVisibility(addButton)}, 3000);
-    setTimeout(() => {removeVisibility(finalAddContainer)}, 3000);
+    if(mainInput.value !== '' || side1Input.value !== '' || side2Input.value !== ''){
+        renderToDb()
+        setTimeout(() => {removeVisibility(addContainer)}, 200);
+        setTimeout(() => {addVisibility(finalAddContainer)}, 300);
+        setTimeout(() => {addVisibility(addButton)}, 2500);
+        setTimeout(() => {removeVisibility(finalAddContainer)}, 2500);
+    }else {
+        finalAddMessage.innerHTML = 'Please Fill At Least One Selection'
+        setTimeout(() => {removeVisibility(addContainer)}, 200);
+        setTimeout(() => {addVisibility(finalAddContainer)}, 200);
+        setTimeout(() => {removeVisibility(finalAddContainer)}, 2500);
+        setTimeout(() => {addVisibility(addContainer)}, 2500);
+    }
+    
 }
 
 function shadowWhenPressed (btn, classNamePressed, className) {

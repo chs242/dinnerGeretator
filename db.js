@@ -44,6 +44,32 @@ const renderMeal = (htmlMains, htmlSides1, htmlSides2) => {
     }
 }
 
-// function renderToDb{
-
-// }
+function renderToDb () {
+    const newMain = {
+        foodName: mainInput.value
+    }
+    const newSide1 = {
+        foodName: side1Input.value
+    }
+    const newSide2 = {
+        foodName: side2Input.value
+    }
+    if(mainInput.value !== ''){
+        db.collection('users').doc('pJfKZdDh67VuTwU1abdM').update({
+            mains: firebase.firestore.FieldValue.arrayUnion(newMain)
+        })
+    }
+    if(side1Input.value !== ''){
+        db.collection('users').doc('pJfKZdDh67VuTwU1abdM').update({
+            sides: firebase.firestore.FieldValue.arrayUnion(newSide1)
+        })
+    }
+    if(side2Input.value !== ''){
+        db.collection('users').doc('pJfKZdDh67VuTwU1abdM').update({
+            sides: firebase.firestore.FieldValue.arrayUnion(newSide2)
+        })
+    }
+    mainInput.value = ''
+    side1Input.value = ''
+    side2Input.value = ''
+}
