@@ -37,9 +37,17 @@
 
         <div id="add-container-visibility-toggle-wrapper">
             <div id="add-container" class="add-container">
-                <input name="main" type="text" id="main-input" placeholder="add main...">
-                <input name="side-1" type="text" id="side-1-input" placeholder="add side dish...">
-                <input name="side-2"type="text" id="side-2-input" placeholder="add another side dish...">
+                <input class="main-input" name="main" type="text" id="main-input" placeholder="add main...">
+                <div class="side-inputs-container">
+                    <input class="side-input" name="side-1" type="text" id="side-1-input" placeholder="add side dish...">                
+                    <input class="side-input" name="side-1-type"type="text" id="side-1-type-input" placeholder="add food type...">
+                </div>
+                <div class="side-inputs-container">
+                    <input class="side-input" name="side-2"type="text" id="side-2-input" placeholder="add another side dish...">
+                    <input class="side-input" name="side-2-type"type="text" id="side-2-type-input" placeholder="add food type...">
+                </div>
+                
+                
                 <div>
                     <button id="cancel-button" class="add-container-button">cancel</button>
                     <button id="final-add-button" class="add-container-button">Add</button>
@@ -54,11 +62,14 @@
     <!-- nav option pop-up modal -->
     <div id="modal" class="modal">
         <div id="modal-box" class="modal-box">
-            <div id="modal-header" class="modal-header">
+            <div class="modal-header">
+                <div id="modal-header-main"></div>
+                <div id="modal-header-side"></div>
                 <a href="javascript:void(0)" id="modal-close-btn" class="modal-close-btn">&times;</a>
             </div>
             <div id="modal-content" class="modal-content">
-                some text here <br> some more text here
+                <div id="modal-content-main"></div>
+                <div id="modal-content-side"></div>
             </div>
             <div id="modal-footer" class="modal-footer"></div>
         </div>
@@ -74,19 +85,9 @@
     <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-firestore.js"></script>
 
-    <script>
+    <script src="config.js"></script>
         
-    // Your web app's Firebase configuration
-
-    var firebaseConfig = {
-        apiKey: "AIzaSyDri08BIfNtKQLipY4T7bP4F3Dm6r4vKLo",
-        authDomain: "dinner-generator-49191.firebaseapp.com",
-        databaseURL: "https://dinner-generator-49191.firebaseio.com",
-        projectId: "dinner-generator-49191",
-        storageBucket: "dinner-generator-49191.appspot.com",
-        messagingSenderId: "91970655312",
-        appId: "1:91970655312:web:cf77255e90d6da3219ed55"
-    };
+    <script>   
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();

@@ -125,12 +125,8 @@ html, body{
 }
 
 .add{
+    /* text inside add button */
     padding: 21px 0;
-}
-
-#add-container-visibility-toggle-wrapper {
-    display: none;
-    margin-top: 40px;
 }
 
 #add-container{
@@ -139,43 +135,54 @@ html, body{
     text-align: center;
 }
 
+side-inputs-container{
+    display: flex;
+}
+
 input{
     border: 0;
     border-radius: 10px;;
     height: 30px;
-    width: 30%;
     margin: 4px auto;
 }
 
+.main-input{
+    width: 30vw;
+}
+
+.side-input{
+    width: 13vw;
+    margin: 1vh 2vw;
+}
+
+input::placeholder{
+    text-align: center;
+    font-family: inherit;
+}
+
 .add-container-button{
-    transition: 0.2s ease;
     width: 13vw;
     margin: 1vh 2vw;
     padding: 1vh 1vw;
     background-color: var(--mediumclr);
     color: var(--lightclr);
     font-family: 'Quicksand', sans-serif;
-    font-size: 1.5vh;
     border-radius: 10px;
     border: 0;
     cursor: pointer;
 }
 
 .add-container-button-pressed{
-    transition: 0.2s ease;
     width: 13vw;
     margin: 1vh 2vw;
     padding: 1vh 1vw;
     background-color: var(--mediumclr);
     color: var(--lightclr);
     font-family: 'Quicksand', sans-serif;
-    font-size: 1.5vh;
     border-radius: 10px;
     border: 0;
-    -webkit-box-shadow: 3px 5px 37px -6px rgba(0,0,0,0.75);
-    -moz-box-shadow: 3px 5px 37px -6px rgba(0,0,0,0.75);
-    box-shadow: 3px 5px 37px -6px rgba(0,0,0,0.75);
     cursor: pointer;
+    box-shadow: 3px 5px 37px -6px rgba(0,0,0,0.75);
 }
 
 .final-add-message-container{
@@ -210,22 +217,44 @@ input{
 
 .modal-box{
     width: 80%;
+    max-width: 500px;
     background-color: white;
-    position: fixed;
-    left: 10%;
+    /* position: fixed; */
     margin: 15% auto;
+    border-radius: 10px;
+    text-align: center;
     animation-name: slideUp;
     animation-duration: 0.4s;
     animation-timing-function: ease-in;
-    -webkit-box-shadow: 3px 5px 37px -6px rgba(0,0,0,0.75);
-    -moz-box-shadow: 3px 5px 37px -6px rgba(0,0,0,0.75);
     box-shadow: 3px 5px 37px -6px rgba(0,0,0,0.75);
 }
 
 .modal-header, .modal-footer{
     height: 5vh;
     background-color: var(--mediumclr);
+    display: flex;
 }
+
+.modal-header{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.modal-footer{
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.modal-content{
+    display: flex;
+}
+
+#modal-header-main, #modal-header-side, #modal-content-main, #modal-content-side{
+    width: 50%;
+    text-align: center;
+}
+
+
 
 .modal-close-btn{
     display: block;
@@ -237,10 +266,10 @@ input{
 }
 @keyframes slideUp {
     from {
-        top: -20%;
+        margin-top: -10%;
     }
     to {
-        top: 1%;
+        margin-top: 15%;
     }
 }
 
@@ -295,11 +324,12 @@ footer{
 
 
 @media screen and (max-width: 600px) {
-    .output, .green-border, input, .final-add-message-container {
+    .output, .green-border, .main-input .final-add-message-container {
      width: 80%;
     }
-    .add-container-button, .add-container-button-pressed{
-        font-size: 1.5vh;
+
+    .side-input, .main-input{
+        width: 40%
     }
 
     .nav-option {

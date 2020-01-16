@@ -14,7 +14,10 @@ const viewMenuBtn = document.getElementById('view-menu')
 const settingsBtn = document.getElementById('settings')
 const logoutBtn = document.getElementById('log-out')
 const modal = document.getElementById('modal')
-const modalContent = document.getElementById('modal-content')
+const modalHeaderMain = document.getElementById('modal-header-main')
+const modalHeaderSide = document.getElementById('modal-header-side')
+const modalContentMain = document.getElementById('modal-content-main')
+const modalContentSide = document.getElementById('modal-content-side')
 const modalCloseBtn = document.getElementById('modal-close-btn')
 
 //DOM = outputs
@@ -36,6 +39,8 @@ const finalAddContainer = document.getElementById('final-add-message-container')
 const mainInput = document.getElementById('main-input')
 const side1Input = document.getElementById('side-1-input')
 const side2Input = document.getElementById('side-2-input')
+const side1TypeInput = document.getElementById('side-1-type-input')
+const side2TypeInput = document.getElementById('side-2-type-input')
 
 
 // navBar open, close and modal functionality
@@ -54,16 +59,32 @@ modalCloseBtn.onclick = () => closeModal()
 viewMenuBtn.onclick = () => {
     closeNavBar()
     modal.style.display = 'block';
-    const menu = renderMenu()
-    modalContent.innerHTML = menu
+    modalHeaderMain.innerHTML = 'My Mains'
+    modalHeaderSide.innerHTML = 'My Sides'
+    renderMenu()
 }
 
 window.onclick = function(evt) {
     if (evt.target == modal) {
       closeModal()
     }
-  }
+}
 
+settingsBtn.onclick = () => {
+    unavailable()
+    closeNavBar()
+}
+
+logoutBtn.onclick = () => {
+    unavailable()
+    closeNavBar()
+}
+
+const unavailable = () => {
+    available()
+    modalContentMain.innerHTML = "This Feature Isn't Available Yet" 
+}
+const available = () => modal.style.display = 'block';
 const closeNavBar = () => sideNav.style.width = 0;
 const closeModal = () => modal.style.display = "none";
 const openNavBar = (width) => sideNav.style.width = width
@@ -91,6 +112,7 @@ cancelButton.onclick = () => {
 finalAddButton.onclick = () => {
     shadowWhenPressed(finalAddButton, 'add-container-button-pressed', 'add-container-button')
     if(mainInput.value !== '' || side1Input.value !== '' || side2Input.value !== ''){
+        finalAddMessage.innerHTML = 'Your Selection has been added'
         renderToDb()
         setTimeout(() => {removeVisibility(addContainer)}, 200);
         setTimeout(() => {addVisibility(finalAddContainer)}, 300);

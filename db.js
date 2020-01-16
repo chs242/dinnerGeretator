@@ -49,10 +49,12 @@ function renderToDb () {
         foodName: mainInput.value
     }
     const newSide1 = {
-        foodName: side1Input.value
+        foodName: side1Input.value,
+        foodType: side1TypeInput.value
     }
     const newSide2 = {
-        foodName: side2Input.value
+        foodName: side2Input.value,
+        foodType: side2TypeInput.value
     }
     if(mainInput.value !== ''){
         db.collection('users').doc('pJfKZdDh67VuTwU1abdM').update({
@@ -75,16 +77,24 @@ function renderToDb () {
 }
 
 const renderMenu = () => {
-    const myArray = []
+    const myMainArray = []
     db.collection('users').get().then(result => {
         result.forEach(item => {
             const mainDishes = item.data().mains;
             for(i of mainDishes){
-                myArray.push(i.foodName);
+                myMainArray.push(i.foodName);
             }   
-            
+            modalContentMain.innerHTML = myMainArray.join('<br/>')
         });
-    });
-    console.log(myArray)
-    
+    });  
+    const mySideArray = []
+    db.collection('users').get().then(result => {
+        result.forEach(item => {
+            const sideDishes = item.data().sides;
+            for(j of sideDishes){
+                mySideArray.push(j.foodName);
+            }   
+            modalContentSide.innerHTML = mySideArray.join('<br/>')
+        });
+    });  
 }
