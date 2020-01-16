@@ -172,7 +172,7 @@ input::placeholder{
     cursor: pointer;
 }
 
-.add-container-wrapper {
+#add-container-wrapper {
     display: none;
     margin-top: 40px;
 }

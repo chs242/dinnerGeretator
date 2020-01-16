@@ -1,5 +1,5 @@
 //https://developers.google.com/web/fundamentals/app-install-banners/
-const cacheName ='site-static-v3'
+const cacheName ='site-static-v4'
 const assets = [
     '/',
     '/index.html',

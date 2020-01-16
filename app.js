@@ -29,7 +29,7 @@ const side2Output = document.getElementById('side-2')
 
 //DOM = add container
 const addButton = document.getElementById('add-button')
-const addContainer = document.getElementById('add-container-visibility-toggle-wrapper')
+const addContainer = document.getElementById('add-container-wrapper')
 const cancelButton = document.getElementById('cancel-button')
 const finalAddButton = document.getElementById('final-add-button')
 const finalAddMessage = document.getElementById('final-add-message')
@@ -41,53 +41,6 @@ const side1Input = document.getElementById('side-1-input')
 const side2Input = document.getElementById('side-2-input')
 const side1TypeInput = document.getElementById('side-1-type-input')
 const side2TypeInput = document.getElementById('side-2-type-input')
-
-
-// navBar open, close and modal functionality
-openBtn.onclick = () => {
-    const x = window.matchMedia('(max-width: 600px)')
-    if(x.matches){
-        openNavBar('70%')
-    }else {
-        openNavBar('20%')
-    }
-}
-
-closeBtn.onclick = () => closeNavBar()
-modalCloseBtn.onclick = () => closeModal()
-
-viewMenuBtn.onclick = () => {
-    closeNavBar()
-    modal.style.display = 'block';
-    modalHeaderMain.innerHTML = 'My Mains'
-    modalHeaderSide.innerHTML = 'My Sides'
-    renderMenu()
-}
-
-window.onclick = function(evt) {
-    if (evt.target == modal) {
-      closeModal()
-    }
-}
-
-settingsBtn.onclick = () => {
-    unavailable()
-    closeNavBar()
-}
-
-logoutBtn.onclick = () => {
-    unavailable()
-    closeNavBar()
-}
-
-const unavailable = () => {
-    available()
-    modalContentMain.innerHTML = "This Feature Isn't Available Yet" 
-}
-const available = () => modal.style.display = 'block';
-const closeNavBar = () => sideNav.style.width = 0;
-const closeModal = () => modal.style.display = "none";
-const openNavBar = (width) => sideNav.style.width = width
 
 
 //genearate button and add container
@@ -144,3 +97,49 @@ function removeVisibility (x) {
         x.style.display = "none";
     }
 }
+
+// navBar open, close and modal functionality
+openBtn.onclick = () => {
+    const x = window.matchMedia('(max-width: 600px)')
+    if(x.matches){
+        openNavBar('70%')
+    }else {
+        openNavBar('20%')
+    }
+}
+
+closeBtn.onclick = () => closeNavBar()
+modalCloseBtn.onclick = () => closeModal()
+
+viewMenuBtn.onclick = () => {
+    closeNavBar()
+    modal.style.display = 'block';
+    modalHeaderMain.innerHTML = 'My Mains'
+    modalHeaderSide.innerHTML = 'My Sides'
+    renderMenu()
+}
+
+window.onclick = function(evt) {
+    if (evt.target == modal) {
+      closeModal()
+    }
+}
+
+settingsBtn.onclick = () => {
+    unavailable()
+    closeNavBar()
+}
+
+logoutBtn.onclick = () => {
+    unavailable()
+    closeNavBar()
+}
+
+const unavailable = () => {
+    available()
+    modalContentMain.innerHTML = "This Feature Isn't Available Yet" 
+}
+const available = () => modal.style.display = 'block';
+const closeNavBar = () => sideNav.style.width = 0;
+const closeModal = () => modal.style.display = "none";
+const openNavBar = (width) => sideNav.style.width = width
