@@ -172,6 +172,11 @@ input::placeholder{
     cursor: pointer;
 }
 
+.add-container-wrapper {
+    display: none;
+    margin-top: 40px;
+}
+
 .add-container-button-pressed{
     width: 13vw;
     margin: 1vh 2vw;
