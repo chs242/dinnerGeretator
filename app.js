@@ -138,6 +138,7 @@ logoutBtn.onclick = () => {
 const unavailable = () => {
     available()
     modalContentMain.innerHTML = "This Feature Isn't Available Yet" 
+    modalContentSide.innerHTML = ''
 }
 const available = () => modal.style.display = 'block';
 const closeNavBar = () => sideNav.style.width = 0;
