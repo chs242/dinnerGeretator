@@ -109,7 +109,7 @@ openBtn.onclick = () => {
 }
 
 closeBtn.onclick = () => closeNavBar()
-modalCloseBtn.onclick = () => closeModal()
+modalCloseBtn.onclick = () => clearModal()
 
 viewMenuBtn.onclick = () => {
     closeNavBar()
@@ -121,7 +121,7 @@ viewMenuBtn.onclick = () => {
 
 window.onclick = function(evt) {
     if (evt.target == modal) {
-      closeModal()
+        clearModal()
     }
 }
 
@@ -136,11 +136,20 @@ logoutBtn.onclick = () => {
 }
 
 const unavailable = () => {
-    available()
-    modalContentMain.innerHTML = "This Feature Isn't Available Yet" 
     modalContentSide.innerHTML = ''
+    modalHeaderMain.innerHTML = ''
+    modalHeaderSide.innerHTML = ''
+    modalAppear()
+    modalContentMain.innerHTML = "This Feature Isn't Available Yet" 
 }
-const available = () => modal.style.display = 'block';
+const clearModal = () => {
+    modalContentSide.innerHTML = ''
+    modalHeaderMain.innerHTML = ''
+    modalHeaderSide.innerHTML = ''
+    modalContentMain.innerHTML = ''
+    closeModal()
+}
+const modalAppear = () => modal.style.display = 'block';
 const closeNavBar = () => sideNav.style.width = 0;
 const closeModal = () => modal.style.display = "none";
-const openNavBar = (width) => sideNav.style.width = width
+const openNavBar = (width) => sideNav.style.width = width;
